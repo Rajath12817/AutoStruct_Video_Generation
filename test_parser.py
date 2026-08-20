@@ -16,6 +16,10 @@ Set your Groq API key before running:
 
 import os
 import json
+from env_loader import load_dotenv_file
+
+load_dotenv_file()
+
 from parser import InstructionParser
 
 # ── Setup ─────────────────────────────────────────────────────────────────────

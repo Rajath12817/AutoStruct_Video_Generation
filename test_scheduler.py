@@ -1,4 +1,8 @@
 import os
+from env_loader import load_dotenv_file
+
+load_dotenv_file()
+
 from scheduler import TemporalScheduler
 
 API_KEY = os.environ.get("GROQ_API_KEY")

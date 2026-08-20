@@ -1,13 +1,16 @@
 import os
 import json
-from parser import InstructionParser
-from scheduler import TemporalScheduler
-from test_parser import tests
+from env_loader import load_dotenv_file
 
+load_dotenv_file()
 API_KEY = os.environ.get("GROQ_API_KEY")
 
 if not API_KEY:
     raise RuntimeError("Set GROQ_API_KEY before running the pipeline.")
+
+from parser import InstructionParser
+from scheduler import TemporalScheduler
+from test_parser import tests
 
 def run_pipeline():
     print("Initializing Full Pipeline (Parser + Scheduler)...")

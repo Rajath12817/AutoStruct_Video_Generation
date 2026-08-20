@@ -97,7 +97,13 @@ pip install symspellpy groq
 1. Go to [https://console.groq.com/](https://console.groq.com/)
 2. Sign up (no credit card required)
 3. Create an API key
-4. Export it:
+4. Create a local `.env` file in the project root:
+
+```bash
+GROQ_API_KEY=gsk_your_key_here
+```
+
+If you prefer the shell, exporting the variable also works:
 
 ```bash
 export GROQ_API_KEY=gsk_your_key_here

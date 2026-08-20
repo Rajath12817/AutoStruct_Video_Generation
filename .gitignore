@@ -6,3 +6,4 @@ __pycache__/
 .ruff_cache/
 test_results.json
 pipeline_results.json
+.env

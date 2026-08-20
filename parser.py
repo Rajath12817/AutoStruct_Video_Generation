@@ -15,11 +15,14 @@ import time
 from typing import Optional
 from dataclasses import dataclass, asdict
 
+from env_loader import load_dotenv_file
 from symspellpy import SymSpell, Verbosity
 from groq import Groq
 import spacy
 import nltk
 from nltk.stem import WordNetLemmatizer
+
+load_dotenv_file()
 
 
 # ─────────────────────────────────────────────
