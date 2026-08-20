@@ -30,7 +30,11 @@ load_dotenv_file()
 # ─────────────────────────────────────────────
 
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
-GROQ_MODEL   = "llama-3.3-70b-versatile"   # free & powerful
+GROQ_MODEL = os.environ.get("GROQ_MODEL")
+GROQ_MODEL_FALLBACKS = [
+    "openai/gpt-oss-120b",
+    "qwen/qwen3.6-27b",
+]
 
 # ─────────────────────────────────────────────
 #  DOMAIN VOCABULARY  (handwash-focused + general)
@@ -168,21 +172,39 @@ class GroqLLM:
     Sign up free at: https://console.groq.com/
     """
 
-    def __init__(self, api_key: str):
+    def __init__(self, api_key: str, model: Optional[str] = None):
         self.client = Groq(api_key=api_key)
-        self.model  = GROQ_MODEL
+        if model:
+            self.models = [model]
+        else:
+            self.models = list(GROQ_MODEL_FALLBACKS)
 
     def call(self, system: str, user: str, temperature: float = 0.0) -> str:
-        response = self.client.chat.completions.create(
-            model=self.model,
-            temperature=temperature,
-            max_tokens=1024,
-            messages=[
-                {"role": "system", "content": system},
-                {"role": "user",   "content": user},
-            ],
-        )
-        return response.choices[0].message.content.strip()
+        last_error: Exception | None = None
+        for model in self.models:
+            try:
+                response = self.client.chat.completions.create(
+                    model=model,
+                    temperature=temperature,
+                    max_tokens=1024,
+                    messages=[
+                        {"role": "system", "content": system},
+                        {"role": "user",   "content": user},
+                    ],
+                )
+                return response.choices[0].message.content.strip()
+            except Exception as exc:
+                message = str(exc).lower()
+                if "model" not in message or (
+                    "not found" not in message and "does not exist" not in message and "no access" not in message
+                ):
+                    raise
+                last_error = exc
+                print(f"[GroqLLM] Model {model!r} unavailable, trying next fallback...")
+
+        if last_error is not None:
+            raise last_error
+        raise RuntimeError("No Groq models available.")
 
 
 # ─────────────────────────────────────────────
@@ -441,7 +463,7 @@ class InstructionParser:
         api_key = groq_api_key or GROQ_API_KEY
         if not api_key:
             raise ValueError("Set GROQ_API_KEY in your environment before running the parser.")
-        self.llm = GroqLLM(api_key=api_key)
+        self.llm = GroqLLM(api_key=api_key, model=GROQ_MODEL)
         print("[Parser] Ready.\n")
 
     def parse(self, raw_input: str, verbose: bool = True) -> ParserResult:

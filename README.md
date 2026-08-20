@@ -101,12 +101,14 @@ pip install symspellpy groq
 
 ```bash
 GROQ_API_KEY=gsk_your_key_here
+GROQ_MODEL=openai/gpt-oss-120b
 ```
 
 If you prefer the shell, exporting the variable also works:
 
 ```bash
 export GROQ_API_KEY=gsk_your_key_here
+export GROQ_MODEL=openai/gpt-oss-120b
 ```
 
 ### 3. Run
@@ -114,7 +116,7 @@ export GROQ_API_KEY=gsk_your_key_here
 ```python
 from parser import InstructionParser
 
-parser = InstructionParser(groq_api_key="gsk_...")
+parser = InstructionParser()
 
 # Single call
 result = parser.parse("wwash hand and takes bottle near table")
