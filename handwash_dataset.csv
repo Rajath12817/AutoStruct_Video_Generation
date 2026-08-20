@@ -1,0 +1,601 @@
+video_id,step_id,text,action,start_time,end_time
+handwash_001,1,start the faucet,turn on tap,0,2
+handwash_001,2,hold hands under running water,wet hands,2,5
+handwash_001,3,put soap on hands,apply soap,5,7
+handwash_001,4,lather your hands,rub hands,7,10
+handwash_001,5,wash off soap,rinse hands,10,12
+handwash_001,6,turn off tap,turn off tap,12,15
+handwash_002,1,turn on tap,turn on tap,0,3
+handwash_002,2,wet hands,wet hands,3,7
+handwash_002,3,add soap to your hands,apply soap,7,10
+handwash_002,4,rub hands,rub hands,10,13
+handwash_002,5,wash off soap,rinse hands,13,17
+handwash_002,6,turn off tap,turn off tap,17,20
+handwash_003,1,reach and turn on the tap,turn on tap,0,4
+handwash_003,2,hold hands under running water,wet hands,4,8
+handwash_003,3,apply soap,apply soap,8,12
+handwash_003,4,lather your hands,rub hands,12,17
+handwash_003,5,rinse hands,rinse hands,17,21
+handwash_003,6,switch off the tap,turn off tap,21,22
+handwash_004,1,open the tap,turn on tap,0,3
+handwash_004,2,wet hands,wet hands,3,6
+handwash_004,3,apply soap,apply soap,6,8
+handwash_004,4,lather your hands,rub hands,8,13
+handwash_004,5,clean hands with water,rinse hands,13,16
+handwash_004,6,stop the faucet,turn off tap,16,18
+handwash_005,1,switch on the tap,turn on tap,0,4
+handwash_005,2,place hands under water,wet hands,4,6
+handwash_005,3,put soap on hands,apply soap,6,8
+handwash_005,4,rub hands together,rub hands,8,13
+handwash_005,5,clean hands with water,rinse hands,13,17
+handwash_005,6,close the tap,turn off tap,17,18
+handwash_006,1,turn on tap,turn on tap,0,2
+handwash_006,2,get your hands wet,wet hands,2,4
+handwash_006,3,put soap on hands,apply soap,4,8
+handwash_006,4,scrub hands,rub hands,8,11
+handwash_006,5,rinse hands,rinse hands,11,14
+handwash_006,6,close the tap,turn off tap,14,17
+handwash_007,1,open the tap,turn on tap,0,4
+handwash_007,2,get your hands wet,wet hands,4,7
+handwash_007,3,apply soap,apply soap,7,10
+handwash_007,4,rub hands,rub hands,10,13
+handwash_007,5,clean hands with water,rinse hands,13,15
+handwash_007,6,stop the faucet,turn off tap,15,18
+handwash_008,1,turn on tap,turn on tap,0,2
+handwash_008,2,wet hands,wet hands,2,5
+handwash_008,3,use soap,apply soap,5,7
+handwash_008,4,clean hands by rubbing,rub hands,7,12
+handwash_008,5,rinse hands with water,rinse hands,12,14
+handwash_008,6,close the tap,turn off tap,14,15
+handwash_009,1,switch on the tap,turn on tap,0,4
+handwash_009,2,wet hands,wet hands,4,7
+handwash_009,3,put soap on hands,apply soap,7,9
+handwash_009,4,clean hands by rubbing,rub hands,9,14
+handwash_009,5,wash off soap,rinse hands,14,16
+handwash_009,6,stop the faucet,turn off tap,16,19
+handwash_010,1,open the tap,turn on tap,0,4
+handwash_010,2,get your hands wet,wet hands,4,7
+handwash_010,3,spread soap on your hands,apply soap,7,11
+handwash_010,4,rub hands,rub hands,11,15
+handwash_010,5,clean hands with water,rinse hands,15,17
+handwash_010,6,turn off tap,turn off tap,17,18
+handwash_011,1,switch on the tap,turn on tap,0,3
+handwash_011,2,get your hands wet,wet hands,3,5
+handwash_011,3,put soap on hands,apply soap,5,7
+handwash_011,4,scrub hands,rub hands,7,12
+handwash_011,5,wash off soap,rinse hands,12,14
+handwash_011,6,turn off tap,turn off tap,14,15
+handwash_012,1,open the tap,turn on tap,0,2
+handwash_012,2,place hands under water,wet hands,2,6
+handwash_012,3,add soap to your hands,apply soap,6,8
+handwash_012,4,rub hands,rub hands,8,11
+handwash_012,5,clean hands with water,rinse hands,11,14
+handwash_012,6,switch off the tap,turn off tap,14,15
+handwash_013,1,turn on tap,turn on tap,0,3
+handwash_013,2,wet hands,wet hands,3,7
+handwash_013,3,spread soap on your hands,apply soap,7,11
+handwash_013,4,rub hands,rub hands,11,15
+handwash_013,5,rinse hands,rinse hands,15,18
+handwash_013,6,switch off the tap,turn off tap,18,21
+handwash_014,1,open the tap,turn on tap,0,2
+handwash_014,2,place hands under water,wet hands,2,4
+handwash_014,3,apply soap,apply soap,4,8
+handwash_014,4,scrub hands,rub hands,8,13
+handwash_014,5,wash off soap,rinse hands,13,15
+handwash_014,6,close the tap,turn off tap,15,17
+handwash_015,1,turn on tap,turn on tap,0,3
+handwash_015,2,place hands under water,wet hands,3,6
+handwash_015,3,add soap to your hands,apply soap,6,9
+handwash_015,4,rub hands together,rub hands,9,14
+handwash_015,5,rinse hands,rinse hands,14,18
+handwash_015,6,switch off the tap,turn off tap,18,19
+handwash_016,1,open the tap,turn on tap,0,2
+handwash_016,2,hold hands under running water,wet hands,2,4
+handwash_016,3,add soap to your hands,apply soap,4,7
+handwash_016,4,lather your hands,rub hands,7,11
+handwash_016,5,rinse hands with water,rinse hands,11,14
+handwash_016,6,stop the faucet,turn off tap,14,15
+handwash_017,1,start the faucet,turn on tap,0,3
+handwash_017,2,place hands under water,wet hands,3,7
+handwash_017,3,spread soap on your hands,apply soap,7,11
+handwash_017,4,rub hands,rub hands,11,15
+handwash_017,5,rinse hands,rinse hands,15,19
+handwash_017,6,close the tap,turn off tap,19,20
+handwash_018,1,reach and turn on the tap,turn on tap,0,4
+handwash_018,2,place hands under water,wet hands,4,6
+handwash_018,3,spread soap on your hands,apply soap,6,10
+handwash_018,4,rub hands,rub hands,10,13
+handwash_018,5,wash off soap,rinse hands,13,17
+handwash_018,6,turn off tap,turn off tap,17,19
+handwash_019,1,open the tap,turn on tap,0,2
+handwash_019,2,place hands under water,wet hands,2,6
+handwash_019,3,add soap to your hands,apply soap,6,9
+handwash_019,4,rub hands,rub hands,9,13
+handwash_019,5,clean hands with water,rinse hands,13,15
+handwash_019,6,stop the faucet,turn off tap,15,18
+handwash_020,1,switch on the tap,turn on tap,0,3
+handwash_020,2,hold hands under running water,wet hands,3,7
+handwash_020,3,put soap on hands,apply soap,7,9
+handwash_020,4,scrub hands,rub hands,9,14
+handwash_020,5,clean hands with water,rinse hands,14,17
+handwash_020,6,switch off the tap,turn off tap,17,19
+handwash_021,1,switch on the tap,turn on tap,0,4
+handwash_021,2,place hands under water,wet hands,4,7
+handwash_021,3,spread soap on your hands,apply soap,7,9
+handwash_021,4,lather your hands,rub hands,9,14
+handwash_021,5,rinse hands,rinse hands,14,17
+handwash_021,6,stop the faucet,turn off tap,17,20
+handwash_022,1,start the faucet,turn on tap,0,3
+handwash_022,2,place hands under water,wet hands,3,7
+handwash_022,3,use soap,apply soap,7,11
+handwash_022,4,clean hands by rubbing,rub hands,11,15
+handwash_022,5,rinse hands with water,rinse hands,15,17
+handwash_022,6,stop the faucet,turn off tap,17,20
+handwash_023,1,open the tap,turn on tap,0,3
+handwash_023,2,place hands under water,wet hands,3,5
+handwash_023,3,use soap,apply soap,5,9
+handwash_023,4,scrub hands,rub hands,9,14
+handwash_023,5,clean hands with water,rinse hands,14,17
+handwash_023,6,switch off the tap,turn off tap,17,18
+handwash_024,1,open the tap,turn on tap,0,4
+handwash_024,2,hold hands under running water,wet hands,4,7
+handwash_024,3,apply soap,apply soap,7,10
+handwash_024,4,clean hands by rubbing,rub hands,10,14
+handwash_024,5,rinse hands with water,rinse hands,14,18
+handwash_024,6,stop the faucet,turn off tap,18,19
+handwash_025,1,turn on tap,turn on tap,0,3
+handwash_025,2,wet hands,wet hands,3,7
+handwash_025,3,spread soap on your hands,apply soap,7,9
+handwash_025,4,rub hands together,rub hands,9,14
+handwash_025,5,wash off soap,rinse hands,14,17
+handwash_025,6,stop the faucet,turn off tap,17,18
+handwash_026,1,switch on the tap,turn on tap,0,3
+handwash_026,2,hold hands under running water,wet hands,3,5
+handwash_026,3,use soap,apply soap,5,9
+handwash_026,4,lather your hands,rub hands,9,14
+handwash_026,5,rinse hands,rinse hands,14,16
+handwash_026,6,close the tap,turn off tap,16,18
+handwash_027,1,switch on the tap,turn on tap,0,4
+handwash_027,2,wet hands,wet hands,4,8
+handwash_027,3,use soap,apply soap,8,12
+handwash_027,4,rub hands,rub hands,12,17
+handwash_027,5,wash off soap,rinse hands,17,21
+handwash_027,6,stop the faucet,turn off tap,21,23
+handwash_028,1,open the tap,turn on tap,0,3
+handwash_028,2,place hands under water,wet hands,3,7
+handwash_028,3,add soap to your hands,apply soap,7,10
+handwash_028,4,rub hands,rub hands,10,13
+handwash_028,5,wash off soap,rinse hands,13,17
+handwash_028,6,stop the faucet,turn off tap,17,18
+handwash_029,1,open the tap,turn on tap,0,4
+handwash_029,2,wet hands,wet hands,4,8
+handwash_029,3,put soap on hands,apply soap,8,10
+handwash_029,4,clean hands by rubbing,rub hands,10,15
+handwash_029,5,rinse hands,rinse hands,15,19
+handwash_029,6,turn off tap,turn off tap,19,21
+handwash_030,1,turn on tap,turn on tap,0,3
+handwash_030,2,hold hands under running water,wet hands,3,6
+handwash_030,3,use soap,apply soap,6,9
+handwash_030,4,lather your hands,rub hands,9,14
+handwash_030,5,clean hands with water,rinse hands,14,16
+handwash_030,6,stop the faucet,turn off tap,16,19
+handwash_031,1,start the faucet,turn on tap,0,2
+handwash_031,2,place hands under water,wet hands,2,4
+handwash_031,3,apply soap,apply soap,4,8
+handwash_031,4,scrub hands,rub hands,8,12
+handwash_031,5,wash off soap,rinse hands,12,15
+handwash_031,6,close the tap,turn off tap,15,16
+handwash_032,1,open the tap,turn on tap,0,3
+handwash_032,2,hold hands under running water,wet hands,3,5
+handwash_032,3,spread soap on your hands,apply soap,5,9
+handwash_032,4,clean hands by rubbing,rub hands,9,14
+handwash_032,5,wash off soap,rinse hands,14,17
+handwash_032,6,stop the faucet,turn off tap,17,19
+handwash_033,1,start the faucet,turn on tap,0,2
+handwash_033,2,hold hands under running water,wet hands,2,5
+handwash_033,3,spread soap on your hands,apply soap,5,8
+handwash_033,4,lather your hands,rub hands,8,13
+handwash_033,5,rinse hands,rinse hands,13,17
+handwash_033,6,switch off the tap,turn off tap,17,18
+handwash_034,1,turn on tap,turn on tap,0,4
+handwash_034,2,hold hands under running water,wet hands,4,8
+handwash_034,3,put soap on hands,apply soap,8,12
+handwash_034,4,lather your hands,rub hands,12,15
+handwash_034,5,rinse hands with water,rinse hands,15,19
+handwash_034,6,close the tap,turn off tap,19,20
+handwash_035,1,reach and turn on the tap,turn on tap,0,4
+handwash_035,2,wet hands,wet hands,4,7
+handwash_035,3,use soap,apply soap,7,11
+handwash_035,4,rub hands,rub hands,11,14
+handwash_035,5,wash off soap,rinse hands,14,18
+handwash_035,6,switch off the tap,turn off tap,18,20
+handwash_036,1,start the faucet,turn on tap,0,4
+handwash_036,2,wet hands,wet hands,4,8
+handwash_036,3,spread soap on your hands,apply soap,8,12
+handwash_036,4,rub hands,rub hands,12,16
+handwash_036,5,rinse hands,rinse hands,16,18
+handwash_036,6,switch off the tap,turn off tap,18,19
+handwash_037,1,switch on the tap,turn on tap,0,3
+handwash_037,2,get your hands wet,wet hands,3,6
+handwash_037,3,apply soap,apply soap,6,9
+handwash_037,4,scrub hands,rub hands,9,14
+handwash_037,5,rinse hands,rinse hands,14,17
+handwash_037,6,turn off tap,turn off tap,17,20
+handwash_038,1,turn on tap,turn on tap,0,2
+handwash_038,2,place hands under water,wet hands,2,4
+handwash_038,3,use soap,apply soap,4,8
+handwash_038,4,rub hands,rub hands,8,13
+handwash_038,5,rinse hands,rinse hands,13,15
+handwash_038,6,switch off the tap,turn off tap,15,18
+handwash_039,1,turn on tap,turn on tap,0,4
+handwash_039,2,hold hands under running water,wet hands,4,6
+handwash_039,3,add soap to your hands,apply soap,6,10
+handwash_039,4,rub hands together,rub hands,10,14
+handwash_039,5,wash off soap,rinse hands,14,17
+handwash_039,6,turn off tap,turn off tap,17,18
+handwash_040,1,open the tap,turn on tap,0,2
+handwash_040,2,hold hands under running water,wet hands,2,6
+handwash_040,3,use soap,apply soap,6,10
+handwash_040,4,rub hands together,rub hands,10,15
+handwash_040,5,rinse hands with water,rinse hands,15,18
+handwash_040,6,close the tap,turn off tap,18,19
+handwash_041,1,start the faucet,turn on tap,0,3
+handwash_041,2,place hands under water,wet hands,3,5
+handwash_041,3,apply soap,apply soap,5,7
+handwash_041,4,lather your hands,rub hands,7,11
+handwash_041,5,clean hands with water,rinse hands,11,14
+handwash_041,6,close the tap,turn off tap,14,16
+handwash_042,1,open the tap,turn on tap,0,2
+handwash_042,2,wet hands,wet hands,2,5
+handwash_042,3,apply soap,apply soap,5,9
+handwash_042,4,rub hands,rub hands,9,14
+handwash_042,5,clean hands with water,rinse hands,14,18
+handwash_042,6,turn off tap,turn off tap,18,19
+handwash_043,1,switch on the tap,turn on tap,0,4
+handwash_043,2,wet hands,wet hands,4,6
+handwash_043,3,put soap on hands,apply soap,6,9
+handwash_043,4,rub hands together,rub hands,9,14
+handwash_043,5,rinse hands,rinse hands,14,16
+handwash_043,6,turn off tap,turn off tap,16,17
+handwash_044,1,turn on tap,turn on tap,0,3
+handwash_044,2,hold hands under running water,wet hands,3,6
+handwash_044,3,use soap,apply soap,6,8
+handwash_044,4,lather your hands,rub hands,8,13
+handwash_044,5,wash off soap,rinse hands,13,16
+handwash_044,6,turn off tap,turn off tap,16,19
+handwash_045,1,switch on the tap,turn on tap,0,3
+handwash_045,2,hold hands under running water,wet hands,3,5
+handwash_045,3,use soap,apply soap,5,7
+handwash_045,4,rub hands together,rub hands,7,12
+handwash_045,5,clean hands with water,rinse hands,12,15
+handwash_045,6,close the tap,turn off tap,15,18
+handwash_046,1,reach and turn on the tap,turn on tap,0,2
+handwash_046,2,hold hands under running water,wet hands,2,5
+handwash_046,3,apply soap,apply soap,5,7
+handwash_046,4,rub hands,rub hands,7,10
+handwash_046,5,wash off soap,rinse hands,10,12
+handwash_046,6,stop the faucet,turn off tap,12,15
+handwash_047,1,turn on tap,turn on tap,0,3
+handwash_047,2,wet hands,wet hands,3,7
+handwash_047,3,spread soap on your hands,apply soap,7,9
+handwash_047,4,rub hands,rub hands,9,13
+handwash_047,5,wash off soap,rinse hands,13,16
+handwash_047,6,close the tap,turn off tap,16,19
+handwash_048,1,reach and turn on the tap,turn on tap,0,4
+handwash_048,2,get your hands wet,wet hands,4,6
+handwash_048,3,use soap,apply soap,6,10
+handwash_048,4,lather your hands,rub hands,10,13
+handwash_048,5,wash off soap,rinse hands,13,15
+handwash_048,6,switch off the tap,turn off tap,15,18
+handwash_049,1,start the faucet,turn on tap,0,3
+handwash_049,2,place hands under water,wet hands,3,7
+handwash_049,3,add soap to your hands,apply soap,7,10
+handwash_049,4,scrub hands,rub hands,10,14
+handwash_049,5,rinse hands with water,rinse hands,14,18
+handwash_049,6,stop the faucet,turn off tap,18,21
+handwash_050,1,reach and turn on the tap,turn on tap,0,4
+handwash_050,2,hold hands under running water,wet hands,4,8
+handwash_050,3,apply soap,apply soap,8,12
+handwash_050,4,rub hands together,rub hands,12,17
+handwash_050,5,clean hands with water,rinse hands,17,19
+handwash_050,6,close the tap,turn off tap,19,22
+handwash_051,1,switch on the tap,turn on tap,0,4
+handwash_051,2,place hands under water,wet hands,4,8
+handwash_051,3,apply soap,apply soap,8,11
+handwash_051,4,rub hands together,rub hands,11,16
+handwash_051,5,rinse hands,rinse hands,16,19
+handwash_051,6,stop the faucet,turn off tap,19,20
+handwash_052,1,reach and turn on the tap,turn on tap,0,4
+handwash_052,2,place hands under water,wet hands,4,8
+handwash_052,3,spread soap on your hands,apply soap,8,10
+handwash_052,4,rub hands together,rub hands,10,15
+handwash_052,5,rinse hands,rinse hands,15,19
+handwash_052,6,switch off the tap,turn off tap,19,20
+handwash_053,1,reach and turn on the tap,turn on tap,0,3
+handwash_053,2,hold hands under running water,wet hands,3,6
+handwash_053,3,add soap to your hands,apply soap,6,9
+handwash_053,4,lather your hands,rub hands,9,14
+handwash_053,5,wash off soap,rinse hands,14,16
+handwash_053,6,switch off the tap,turn off tap,16,18
+handwash_054,1,switch on the tap,turn on tap,0,2
+handwash_054,2,place hands under water,wet hands,2,6
+handwash_054,3,spread soap on your hands,apply soap,6,9
+handwash_054,4,lather your hands,rub hands,9,13
+handwash_054,5,rinse hands,rinse hands,13,17
+handwash_054,6,switch off the tap,turn off tap,17,18
+handwash_055,1,reach and turn on the tap,turn on tap,0,3
+handwash_055,2,hold hands under running water,wet hands,3,7
+handwash_055,3,add soap to your hands,apply soap,7,11
+handwash_055,4,scrub hands,rub hands,11,16
+handwash_055,5,rinse hands with water,rinse hands,16,19
+handwash_055,6,turn off tap,turn off tap,19,21
+handwash_056,1,turn on tap,turn on tap,0,4
+handwash_056,2,hold hands under running water,wet hands,4,6
+handwash_056,3,apply soap,apply soap,6,8
+handwash_056,4,rub hands together,rub hands,8,11
+handwash_056,5,rinse hands,rinse hands,11,14
+handwash_056,6,close the tap,turn off tap,14,17
+handwash_057,1,open the tap,turn on tap,0,2
+handwash_057,2,hold hands under running water,wet hands,2,6
+handwash_057,3,use soap,apply soap,6,8
+handwash_057,4,scrub hands,rub hands,8,13
+handwash_057,5,rinse hands with water,rinse hands,13,16
+handwash_057,6,stop the faucet,turn off tap,16,19
+handwash_058,1,open the tap,turn on tap,0,4
+handwash_058,2,hold hands under running water,wet hands,4,6
+handwash_058,3,add soap to your hands,apply soap,6,9
+handwash_058,4,rub hands together,rub hands,9,13
+handwash_058,5,rinse hands,rinse hands,13,16
+handwash_058,6,turn off tap,turn off tap,16,17
+handwash_059,1,open the tap,turn on tap,0,2
+handwash_059,2,wet hands,wet hands,2,4
+handwash_059,3,add soap to your hands,apply soap,4,7
+handwash_059,4,rub hands,rub hands,7,11
+handwash_059,5,rinse hands with water,rinse hands,11,15
+handwash_059,6,switch off the tap,turn off tap,15,18
+handwash_060,1,switch on the tap,turn on tap,0,4
+handwash_060,2,hold hands under running water,wet hands,4,7
+handwash_060,3,put soap on hands,apply soap,7,10
+handwash_060,4,lather your hands,rub hands,10,15
+handwash_060,5,wash off soap,rinse hands,15,19
+handwash_060,6,turn off tap,turn off tap,19,21
+handwash_061,1,start the faucet,turn on tap,0,4
+handwash_061,2,place hands under water,wet hands,4,8
+handwash_061,3,put soap on hands,apply soap,8,10
+handwash_061,4,rub hands,rub hands,10,13
+handwash_061,5,wash off soap,rinse hands,13,17
+handwash_061,6,switch off the tap,turn off tap,17,18
+handwash_062,1,switch on the tap,turn on tap,0,3
+handwash_062,2,wet hands,wet hands,3,7
+handwash_062,3,apply soap,apply soap,7,11
+handwash_062,4,clean hands by rubbing,rub hands,11,15
+handwash_062,5,wash off soap,rinse hands,15,19
+handwash_062,6,close the tap,turn off tap,19,20
+handwash_063,1,reach and turn on the tap,turn on tap,0,3
+handwash_063,2,wet hands,wet hands,3,6
+handwash_063,3,spread soap on your hands,apply soap,6,10
+handwash_063,4,clean hands by rubbing,rub hands,10,15
+handwash_063,5,rinse hands,rinse hands,15,17
+handwash_063,6,turn off tap,turn off tap,17,20
+handwash_064,1,open the tap,turn on tap,0,4
+handwash_064,2,get your hands wet,wet hands,4,6
+handwash_064,3,put soap on hands,apply soap,6,10
+handwash_064,4,clean hands by rubbing,rub hands,10,14
+handwash_064,5,wash off soap,rinse hands,14,17
+handwash_064,6,turn off tap,turn off tap,17,20
+handwash_065,1,reach and turn on the tap,turn on tap,0,2
+handwash_065,2,wet hands,wet hands,2,5
+handwash_065,3,add soap to your hands,apply soap,5,9
+handwash_065,4,rub hands,rub hands,9,14
+handwash_065,5,rinse hands,rinse hands,14,16
+handwash_065,6,turn off tap,turn off tap,16,17
+handwash_066,1,reach and turn on the tap,turn on tap,0,4
+handwash_066,2,wet hands,wet hands,4,7
+handwash_066,3,apply soap,apply soap,7,9
+handwash_066,4,rub hands,rub hands,9,14
+handwash_066,5,wash off soap,rinse hands,14,17
+handwash_066,6,turn off tap,turn off tap,17,20
+handwash_067,1,start the faucet,turn on tap,0,4
+handwash_067,2,get your hands wet,wet hands,4,8
+handwash_067,3,use soap,apply soap,8,10
+handwash_067,4,clean hands by rubbing,rub hands,10,13
+handwash_067,5,rinse hands with water,rinse hands,13,16
+handwash_067,6,switch off the tap,turn off tap,16,17
+handwash_068,1,open the tap,turn on tap,0,2
+handwash_068,2,place hands under water,wet hands,2,4
+handwash_068,3,put soap on hands,apply soap,4,7
+handwash_068,4,rub hands,rub hands,7,10
+handwash_068,5,rinse hands with water,rinse hands,10,13
+handwash_068,6,turn off tap,turn off tap,13,15
+handwash_069,1,open the tap,turn on tap,0,2
+handwash_069,2,hold hands under running water,wet hands,2,6
+handwash_069,3,put soap on hands,apply soap,6,10
+handwash_069,4,rub hands together,rub hands,10,15
+handwash_069,5,rinse hands with water,rinse hands,15,18
+handwash_069,6,switch off the tap,turn off tap,18,21
+handwash_070,1,switch on the tap,turn on tap,0,2
+handwash_070,2,wet hands,wet hands,2,5
+handwash_070,3,use soap,apply soap,5,7
+handwash_070,4,rub hands together,rub hands,7,11
+handwash_070,5,clean hands with water,rinse hands,11,15
+handwash_070,6,stop the faucet,turn off tap,15,17
+handwash_071,1,turn on tap,turn on tap,0,4
+handwash_071,2,wet hands,wet hands,4,8
+handwash_071,3,put soap on hands,apply soap,8,11
+handwash_071,4,rub hands,rub hands,11,14
+handwash_071,5,rinse hands with water,rinse hands,14,17
+handwash_071,6,turn off tap,turn off tap,17,18
+handwash_072,1,turn on tap,turn on tap,0,4
+handwash_072,2,place hands under water,wet hands,4,7
+handwash_072,3,spread soap on your hands,apply soap,7,9
+handwash_072,4,scrub hands,rub hands,9,12
+handwash_072,5,wash off soap,rinse hands,12,14
+handwash_072,6,close the tap,turn off tap,14,15
+handwash_073,1,reach and turn on the tap,turn on tap,0,3
+handwash_073,2,get your hands wet,wet hands,3,6
+handwash_073,3,use soap,apply soap,6,9
+handwash_073,4,rub hands together,rub hands,9,14
+handwash_073,5,rinse hands with water,rinse hands,14,18
+handwash_073,6,stop the faucet,turn off tap,18,19
+handwash_074,1,start the faucet,turn on tap,0,4
+handwash_074,2,place hands under water,wet hands,4,7
+handwash_074,3,spread soap on your hands,apply soap,7,11
+handwash_074,4,clean hands by rubbing,rub hands,11,15
+handwash_074,5,clean hands with water,rinse hands,15,17
+handwash_074,6,switch off the tap,turn off tap,17,19
+handwash_075,1,open the tap,turn on tap,0,4
+handwash_075,2,wet hands,wet hands,4,6
+handwash_075,3,put soap on hands,apply soap,6,8
+handwash_075,4,rub hands together,rub hands,8,11
+handwash_075,5,wash off soap,rinse hands,11,13
+handwash_075,6,turn off tap,turn off tap,13,14
+handwash_076,1,turn on tap,turn on tap,0,4
+handwash_076,2,get your hands wet,wet hands,4,6
+handwash_076,3,use soap,apply soap,6,8
+handwash_076,4,lather your hands,rub hands,8,11
+handwash_076,5,clean hands with water,rinse hands,11,14
+handwash_076,6,switch off the tap,turn off tap,14,16
+handwash_077,1,open the tap,turn on tap,0,4
+handwash_077,2,wet hands,wet hands,4,6
+handwash_077,3,use soap,apply soap,6,9
+handwash_077,4,rub hands together,rub hands,9,13
+handwash_077,5,clean hands with water,rinse hands,13,16
+handwash_077,6,stop the faucet,turn off tap,16,18
+handwash_078,1,open the tap,turn on tap,0,4
+handwash_078,2,wet hands,wet hands,4,8
+handwash_078,3,add soap to your hands,apply soap,8,12
+handwash_078,4,scrub hands,rub hands,12,17
+handwash_078,5,rinse hands,rinse hands,17,19
+handwash_078,6,stop the faucet,turn off tap,19,22
+handwash_079,1,reach and turn on the tap,turn on tap,0,2
+handwash_079,2,get your hands wet,wet hands,2,4
+handwash_079,3,use soap,apply soap,4,6
+handwash_079,4,lather your hands,rub hands,6,11
+handwash_079,5,rinse hands with water,rinse hands,11,13
+handwash_079,6,close the tap,turn off tap,13,14
+handwash_080,1,start the faucet,turn on tap,0,3
+handwash_080,2,place hands under water,wet hands,3,5
+handwash_080,3,use soap,apply soap,5,8
+handwash_080,4,lather your hands,rub hands,8,13
+handwash_080,5,rinse hands,rinse hands,13,15
+handwash_080,6,close the tap,turn off tap,15,16
+handwash_081,1,open the tap,turn on tap,0,3
+handwash_081,2,get your hands wet,wet hands,3,7
+handwash_081,3,put soap on hands,apply soap,7,9
+handwash_081,4,lather your hands,rub hands,9,12
+handwash_081,5,rinse hands,rinse hands,12,16
+handwash_081,6,switch off the tap,turn off tap,16,19
+handwash_082,1,start the faucet,turn on tap,0,4
+handwash_082,2,place hands under water,wet hands,4,8
+handwash_082,3,use soap,apply soap,8,10
+handwash_082,4,scrub hands,rub hands,10,15
+handwash_082,5,rinse hands,rinse hands,15,17
+handwash_082,6,stop the faucet,turn off tap,17,18
+handwash_083,1,switch on the tap,turn on tap,0,3
+handwash_083,2,hold hands under running water,wet hands,3,6
+handwash_083,3,apply soap,apply soap,6,8
+handwash_083,4,scrub hands,rub hands,8,11
+handwash_083,5,rinse hands,rinse hands,11,14
+handwash_083,6,turn off tap,turn off tap,14,16
+handwash_084,1,open the tap,turn on tap,0,2
+handwash_084,2,hold hands under running water,wet hands,2,5
+handwash_084,3,apply soap,apply soap,5,8
+handwash_084,4,rub hands together,rub hands,8,12
+handwash_084,5,rinse hands with water,rinse hands,12,15
+handwash_084,6,close the tap,turn off tap,15,16
+handwash_085,1,reach and turn on the tap,turn on tap,0,4
+handwash_085,2,get your hands wet,wet hands,4,6
+handwash_085,3,add soap to your hands,apply soap,6,9
+handwash_085,4,rub hands,rub hands,9,13
+handwash_085,5,rinse hands,rinse hands,13,16
+handwash_085,6,switch off the tap,turn off tap,16,19
+handwash_086,1,turn on tap,turn on tap,0,2
+handwash_086,2,hold hands under running water,wet hands,2,5
+handwash_086,3,use soap,apply soap,5,9
+handwash_086,4,lather your hands,rub hands,9,13
+handwash_086,5,rinse hands with water,rinse hands,13,15
+handwash_086,6,switch off the tap,turn off tap,15,17
+handwash_087,1,start the faucet,turn on tap,0,3
+handwash_087,2,hold hands under running water,wet hands,3,5
+handwash_087,3,use soap,apply soap,5,7
+handwash_087,4,rub hands,rub hands,7,10
+handwash_087,5,wash off soap,rinse hands,10,13
+handwash_087,6,close the tap,turn off tap,13,16
+handwash_088,1,open the tap,turn on tap,0,3
+handwash_088,2,place hands under water,wet hands,3,5
+handwash_088,3,use soap,apply soap,5,9
+handwash_088,4,clean hands by rubbing,rub hands,9,12
+handwash_088,5,wash off soap,rinse hands,12,16
+handwash_088,6,switch off the tap,turn off tap,16,17
+handwash_089,1,turn on tap,turn on tap,0,4
+handwash_089,2,hold hands under running water,wet hands,4,8
+handwash_089,3,spread soap on your hands,apply soap,8,12
+handwash_089,4,scrub hands,rub hands,12,15
+handwash_089,5,clean hands with water,rinse hands,15,17
+handwash_089,6,switch off the tap,turn off tap,17,20
+handwash_090,1,switch on the tap,turn on tap,0,3
+handwash_090,2,place hands under water,wet hands,3,5
+handwash_090,3,use soap,apply soap,5,7
+handwash_090,4,rub hands together,rub hands,7,11
+handwash_090,5,clean hands with water,rinse hands,11,15
+handwash_090,6,turn off tap,turn off tap,15,16
+handwash_091,1,start the faucet,turn on tap,0,4
+handwash_091,2,place hands under water,wet hands,4,6
+handwash_091,3,use soap,apply soap,6,9
+handwash_091,4,scrub hands,rub hands,9,12
+handwash_091,5,wash off soap,rinse hands,12,15
+handwash_091,6,switch off the tap,turn off tap,15,18
+handwash_092,1,start the faucet,turn on tap,0,3
+handwash_092,2,wet hands,wet hands,3,7
+handwash_092,3,add soap to your hands,apply soap,7,10
+handwash_092,4,scrub hands,rub hands,10,13
+handwash_092,5,rinse hands with water,rinse hands,13,15
+handwash_092,6,close the tap,turn off tap,15,17
+handwash_093,1,start the faucet,turn on tap,0,4
+handwash_093,2,wet hands,wet hands,4,8
+handwash_093,3,spread soap on your hands,apply soap,8,11
+handwash_093,4,rub hands,rub hands,11,15
+handwash_093,5,wash off soap,rinse hands,15,19
+handwash_093,6,switch off the tap,turn off tap,19,20
+handwash_094,1,turn on tap,turn on tap,0,4
+handwash_094,2,place hands under water,wet hands,4,6
+handwash_094,3,use soap,apply soap,6,8
+handwash_094,4,clean hands by rubbing,rub hands,8,13
+handwash_094,5,rinse hands,rinse hands,13,17
+handwash_094,6,stop the faucet,turn off tap,17,19
+handwash_095,1,open the tap,turn on tap,0,4
+handwash_095,2,hold hands under running water,wet hands,4,8
+handwash_095,3,use soap,apply soap,8,10
+handwash_095,4,lather your hands,rub hands,10,14
+handwash_095,5,rinse hands with water,rinse hands,14,16
+handwash_095,6,switch off the tap,turn off tap,16,17
+handwash_096,1,start the faucet,turn on tap,0,4
+handwash_096,2,place hands under water,wet hands,4,8
+handwash_096,3,add soap to your hands,apply soap,8,11
+handwash_096,4,lather your hands,rub hands,11,15
+handwash_096,5,wash off soap,rinse hands,15,19
+handwash_096,6,stop the faucet,turn off tap,19,20
+handwash_097,1,switch on the tap,turn on tap,0,2
+handwash_097,2,wet hands,wet hands,2,4
+handwash_097,3,use soap,apply soap,4,7
+handwash_097,4,scrub hands,rub hands,7,12
+handwash_097,5,clean hands with water,rinse hands,12,14
+handwash_097,6,turn off tap,turn off tap,14,15
+handwash_098,1,turn on tap,turn on tap,0,3
+handwash_098,2,place hands under water,wet hands,3,6
+handwash_098,3,apply soap,apply soap,6,8
+handwash_098,4,rub hands,rub hands,8,12
+handwash_098,5,rinse hands with water,rinse hands,12,16
+handwash_098,6,switch off the tap,turn off tap,16,19
+handwash_099,1,reach and turn on the tap,turn on tap,0,3
+handwash_099,2,place hands under water,wet hands,3,5
+handwash_099,3,put soap on hands,apply soap,5,8
+handwash_099,4,scrub hands,rub hands,8,11
+handwash_099,5,clean hands with water,rinse hands,11,13
+handwash_099,6,stop the faucet,turn off tap,13,14
+handwash_100,1,open the tap,turn on tap,0,4
+handwash_100,2,wet hands,wet hands,4,6
+handwash_100,3,apply soap,apply soap,6,9
+handwash_100,4,clean hands by rubbing,rub hands,9,12
+handwash_100,5,rinse hands,rinse hands,12,14
+handwash_100,6,stop the faucet,turn off tap,14,15
