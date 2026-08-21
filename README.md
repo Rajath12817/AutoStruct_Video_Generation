@@ -1,6 +1,55 @@
-# Advanced Instruction-to-Video Sentence Parser
+# Auto-Struct — Sequential Text-to-Video Pipeline (Handwashing)
 
-## Overview
+## Project Overview
+
+Converts a natural-language instruction paragraph into a single stitched
+video where each described action appears, in order, for a duration that
+matches how long that action actually takes.
+
+```
+Text instruction
+   │
+   ▼
+Stage 1-2  Parser            parser.py           noisy text -> ordered atomic actions
+   │
+   ▼
+Stage 3    Scheduler         scheduler.py        actions -> timeline (start/end/duration)
+   │
+   ▼
+Stage 4    VideoGenerator    video_generator.py  timeline -> one trimmed/looped clip per action
+   │
+   ▼
+Stage 5    VideoAssembler    assembler.py         ordered clips -> final_video.mp4
+```
+
+Run the whole thing end-to-end with:
+```bash
+python generate_video.py "turn on tap wet hands apply soap rinse dry"
+```
+
+**Current implementation status — Stage 4 is clip *retrieval*, not generation.**
+`video_generator.py` maps each action to a pre-recorded clip in `clips/`
+(same person, same static camera, same background, filmed by us) and
+trims or loops it to the scheduler's assigned duration. No text-to-video
+model (VideoCrafter, AnimateDiff, etc.) is currently in the loop — the
+codebase has a `fallback_generator` hook in `VideoGenerator` for wiring
+one in later, but nothing is connected yet. This was a deliberate choice:
+our GPU (4GB VRAM) can't run those models at usable quality, and
+retrieval trivially satisfies the "same person/background/camera"
+consistency requirement that generative models struggle with. See
+`claudePrompt.md` for the original problem statement, which described
+Stage 4 in terms of a pretrained T2V model — that gap between spec and
+implementation is intentional and should be called out as a scoping
+decision in the capstone report, not treated as an oversight.
+
+Planned next step: once retrieval-based output is validated against real
+footage, evaluate free/open text-to-video models as a Stage 4 upgrade
+(candidates: ModelScope T2V, AnimateDiff, CogVideoX, LTX-Video — via a
+hosted API rather than local inference, given the VRAM constraint).
+
+---
+
+## Stage 1-2: Instruction Parser
 
 A 6-layer NLP pipeline that converts noisy, informal, misspelled natural
 language into clean structured action representations for video generation.
@@ -86,11 +135,12 @@ Structured Action List (JSON)
 ### 1. Install dependencies
 
 ```bash
-pip install symspellpy groq
+pip install -r requirements.txt
+python -m spacy download en_core_web_sm
 ```
 
-> No spaCy model download needed — uses bundled SymSpell dictionaries
-> and Groq's hosted LLM API.
+`moviepy` (used by Stage 4/5) bundles its own static ffmpeg binary via
+`imageio-ffmpeg` — no separate system ffmpeg install needed.
 
 ### 2. Get a free Groq API key
 
@@ -198,18 +248,48 @@ sentence_parser/
 
 ---
 
-## Next Module: Temporal Scheduling (Stage 3)
+## Stage 3: Temporal Scheduler
 
-The output of this parser feeds directly into the temporal scheduler:
+The parser's output feeds directly into `scheduler.py`, which assigns a
+realistic duration to each action (LLM-estimated, grounded by statistical
+averages computed from `handwash_dataset.csv`) and lays them out as a
+non-overlapping timeline:
 
 ```python
 actions = [a.step for a in result.actions]
 # → ["turn_on_tap", "wet_hands", "apply_soap", "rinse_hands", "dry_hands"]
 
-# Temporal scheduler assigns start/end times per action:
-# [
-#   {"step": "turn_on_tap", "start": 0,  "end": 2},
-#   {"step": "wet_hands",   "start": 2,  "end": 5},
+timeline = scheduler.schedule(actions)
+# → [
+#   {"step": "turn_on_tap", "start": 0, "end": 2, "duration": 2},
+#   {"step": "wet_hands",   "start": 2, "end": 5, "duration": 3},
 #   ...
 # ]
 ```
+
+## Stage 4-5: Clip Retrieval + Assembly
+
+`video_generator.py` turns that timeline into one normalized clip per
+action (trimmed/looped from `clips/<step_name>.mp4`), and `assembler.py`
+concatenates them in order into `output/final_video.mp4`. See the
+project overview at the top of this file for the current status and
+limitations of this stage.
+
+## Clip Bank Convention
+
+Place one file per action in `clips/`, named after the parser's `step`
+value, all filmed with the same person/background/static camera:
+
+```
+clips/turn_on_tap.mp4
+clips/wet_hands.mp4
+clips/apply_soap.mp4
+clips/lather_hands.mp4
+clips/scrub_hands.mp4
+clips/rinse_hands.mp4
+clips/dry_hands.mp4
+```
+
+If a step has no matching clip, `VideoGenerator` falls back to a plain
+colored placeholder clip rather than failing — useful for smoke-testing
+the pipeline, not for a final demo.

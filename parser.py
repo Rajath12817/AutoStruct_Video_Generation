@@ -18,6 +18,12 @@ from dataclasses import dataclass, asdict
 from env_loader import load_dotenv_file
 from symspellpy import SymSpell, Verbosity
 from groq import Groq
+from groq import (
+    APIConnectionError as GroqAPIConnectionError,
+    APITimeoutError as GroqAPITimeoutError,
+    RateLimitError as GroqRateLimitError,
+    InternalServerError as GroqInternalServerError,
+)
 import spacy
 import nltk
 from nltk.stem import WordNetLemmatizer
@@ -35,6 +41,14 @@ GROQ_MODEL_FALLBACKS = [
     "openai/gpt-oss-120b",
     "qwen/qwen3.6-27b",
 ]
+
+# Transient errors worth retrying (network blips, rate limits, 5xx). Anything
+# else (bad API key, malformed request, unknown model) fails immediately.
+GROQ_RETRYABLE_EXCEPTIONS = (
+    GroqAPIConnectionError, GroqAPITimeoutError, GroqRateLimitError, GroqInternalServerError,
+)
+GROQ_MAX_RETRIES = 3
+GROQ_BASE_BACKOFF_S = 1.0
 
 # ─────────────────────────────────────────────
 #  DOMAIN VOCABULARY  (handwash-focused + general)
@@ -182,25 +196,38 @@ class GroqLLM:
     def call(self, system: str, user: str, temperature: float = 0.0) -> str:
         last_error: Exception | None = None
         for model in self.models:
-            try:
-                response = self.client.chat.completions.create(
-                    model=model,
-                    temperature=temperature,
-                    max_tokens=1024,
-                    messages=[
-                        {"role": "system", "content": system},
-                        {"role": "user",   "content": user},
-                    ],
-                )
-                return response.choices[0].message.content.strip()
-            except Exception as exc:
-                message = str(exc).lower()
-                if "model" not in message or (
-                    "not found" not in message and "does not exist" not in message and "no access" not in message
-                ):
-                    raise
-                last_error = exc
-                print(f"[GroqLLM] Model {model!r} unavailable, trying next fallback...")
+            for attempt in range(1, GROQ_MAX_RETRIES + 1):
+                try:
+                    response = self.client.chat.completions.create(
+                        model=model,
+                        temperature=temperature,
+                        max_tokens=1024,
+                        messages=[
+                            {"role": "system", "content": system},
+                            {"role": "user",   "content": user},
+                        ],
+                    )
+                    return response.choices[0].message.content.strip()
+                except GROQ_RETRYABLE_EXCEPTIONS as exc:
+                    last_error = exc
+                    if attempt == GROQ_MAX_RETRIES:
+                        print(f"[GroqLLM] Model {model!r} failed after {GROQ_MAX_RETRIES} attempts ({exc}).")
+                        break
+                    backoff = GROQ_BASE_BACKOFF_S * (2 ** (attempt - 1))
+                    print(
+                        f"[GroqLLM] Transient error on {model!r} "
+                        f"(attempt {attempt}/{GROQ_MAX_RETRIES}): {exc}. Retrying in {backoff:.1f}s..."
+                    )
+                    time.sleep(backoff)
+                except Exception as exc:
+                    message = str(exc).lower()
+                    if "model" not in message or (
+                        "not found" not in message and "does not exist" not in message and "no access" not in message
+                    ):
+                        raise
+                    last_error = exc
+                    print(f"[GroqLLM] Model {model!r} unavailable, trying next fallback...")
+                    break  # move on to the next model, no point retrying this one
 
         if last_error is not None:
             raise last_error

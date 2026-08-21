@@ -1,0 +1,9 @@
+symspellpy==6.9.0
+groq==1.2.0
+spacy==3.8.14
+nltk==3.9.4
+python-dotenv==1.2.3
+moviepy==2.2.1
+
+# spaCy English model — install separately:
+# python -m spacy download en_core_web_sm
