@@ -72,6 +72,10 @@ def generate_video(
     from scheduler import TemporalScheduler
     from video_generator import GenerationResult, VideoGenerator, VideoGeneratorError
     from assembler import AssemblerError, VideoAssembler
+    from video_utils import detect_source_resolution
+
+    target_resolution = detect_source_resolution(clips_dir)
+    logger.info("Using target resolution %s (detected from clips in '%s').", target_resolution, clips_dir)
 
     logger.info("Input instruction: %r", instruction)
 
@@ -107,7 +111,10 @@ def generate_video(
         )
 
     try:
-        generator = VideoGenerator(clips_dir=clips_dir, output_dir=processed_dir, strict=strict)
+        generator = VideoGenerator(
+            clips_dir=clips_dir, output_dir=processed_dir, strict=strict,
+            target_resolution=target_resolution,
+        )
         generation: GenerationResult = generator.generate(timeline)
     except VideoGeneratorError as exc:
         raise PipelineError(f"Stage 4 (Clip generation) failed: {exc}") from exc
@@ -120,7 +127,7 @@ def generate_video(
             logger.warning("[4] %s", w)
 
     try:
-        assembler = VideoAssembler(output_path=output_path)
+        assembler = VideoAssembler(output_path=output_path, target_resolution=target_resolution)
         assembly = assembler.assemble(
             generation.clip_paths, transition=transition, crossfade_duration=crossfade_duration,
         )

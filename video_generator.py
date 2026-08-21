@@ -67,11 +67,10 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 
 from moviepy import ColorClip, VideoFileClip, vfx
 
-from video_utils import DEFAULT_FPS, DEFAULT_RESOLUTION, normalize_clip
+from video_utils import DEFAULT_FPS, DEFAULT_RESOLUTION, SUPPORTED_EXTENSIONS, normalize_clip
 
 logger = logging.getLogger("video_generator")
 
-SUPPORTED_EXTENSIONS = (".mp4", ".mov", ".avi", ".webm", ".mkv")
 MIN_DURATION_S = 1
 MAX_DURATION_S = 30  # sanity cap against a runaway/hallucinated scheduler duration
 
