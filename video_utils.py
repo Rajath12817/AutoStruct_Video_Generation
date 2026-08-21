@@ -6,13 +6,51 @@ a plugged-in generative model, or a caller of VideoAssembler directly.
 """
 
 import os
-from typing import Tuple
+from typing import Optional, Tuple
 
-from moviepy import VideoFileClip, vfx
+from moviepy import TextClip, VideoFileClip, vfx
 
 DEFAULT_RESOLUTION: Tuple[int, int] = (1280, 720)
 DEFAULT_FPS = 24
 SUPPORTED_EXTENSIONS = (".mp4", ".mov", ".avi", ".webm", ".mkv")
+
+# Best-effort bold font for step-name captions -- moviepy/Pillow renders fine
+# without one (falls back to a built-in font), this just looks nicer when available.
+_FONT_CANDIDATES = (
+    "C:/Windows/Fonts/arialbd.ttf",
+    "C:/Windows/Fonts/segoeuib.ttf",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+    "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
+)
+
+
+def _find_caption_font() -> Optional[str]:
+    for path in _FONT_CANDIDATES:
+        if os.path.isfile(path):
+            return path
+    return None
+
+
+CAPTION_FONT = _find_caption_font()
+
+
+def build_caption_bar(text: str, target_resolution: Tuple[int, int]):
+    """A black bar + white text spanning the top of target_resolution, sized
+    to that resolution so it can be composited directly at position (0, 0)."""
+    target_w, target_h = target_resolution
+    bar_h = max(40, round(target_h * 0.08))
+    return TextClip(
+        font=CAPTION_FONT,
+        text=text,
+        font_size=max(18, round(bar_h * 0.45)),
+        color="white",
+        bg_color="black",
+        size=(target_w, bar_h),
+        method="caption",
+        text_align="center",
+        horizontal_align="center",
+        vertical_align="center",
+    )
 
 
 def normalize_clip(clip, target_resolution: Tuple[int, int] = DEFAULT_RESOLUTION, target_fps: int = DEFAULT_FPS):

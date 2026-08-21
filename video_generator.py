@@ -113,6 +113,7 @@ class ClipResult:
     path: str
     duration: float
     source: str  # "library" | "fallback_generator" | "placeholder" | "placeholder_after_error"
+    label: str = ""
     is_fallback: bool = False
 
 
@@ -246,7 +247,7 @@ class VideoGenerator:
     # ── per-step generation, with layered fallback ──────────────────────
 
     def _generate_one(self, i: int, entry: Any) -> ClipResult:
-        step, duration = self._validate_entry(i, entry)
+        step, duration, label = self._validate_entry(i, entry)
         safe_name = _safe_filename(step)
         out_path = os.path.join(self.output_dir, f"{i:03d}_{safe_name}.mp4")
 
@@ -254,7 +255,7 @@ class VideoGenerator:
         if source_path is not None:
             try:
                 source_label = "library" if match_type == "exact" else "library_fuzzy"
-                return self._render(step, source_path, duration, out_path, source_label=source_label)
+                return self._render(step, source_path, duration, out_path, source_label=source_label, label=label)
             except VideoGeneratorError as exc:
                 if self.strict:
                     raise
@@ -265,7 +266,7 @@ class VideoGenerator:
                 gen_path = self.fallback_generator(step, duration)
                 if not gen_path or not os.path.isfile(gen_path):
                     raise VideoGeneratorError(f"fallback_generator for '{step}' returned no usable file")
-                return self._render(step, gen_path, duration, out_path, source_label="fallback_generator")
+                return self._render(step, gen_path, duration, out_path, source_label="fallback_generator", label=label)
             except VideoGeneratorError as exc:
                 if self.strict:
                     raise
@@ -280,16 +281,19 @@ class VideoGenerator:
 
         path = self._placeholder_clip(step, duration, index=i)
         source_label = "placeholder" if source_path is None and self.fallback_generator is None else "placeholder_after_error"
-        return ClipResult(step=step, path=path, duration=duration, source=source_label, is_fallback=True)
+        return ClipResult(step=step, path=path, duration=duration, source=source_label, label=label, is_fallback=True)
 
-    def _validate_entry(self, i: int, entry: Any) -> Tuple[str, int]:
+    def _validate_entry(self, i: int, entry: Any) -> Tuple[str, int, str]:
         if not isinstance(entry, dict):
             raise TimelineValidationError(f"timeline[{i}] must be a dict, got {type(entry).__name__}")
         step = entry.get("step")
         if not step or not isinstance(step, str):
             raise TimelineValidationError(f"timeline[{i}] missing a valid 'step' string")
         duration = self._clamp_duration(entry.get("duration", 3))
-        return step, duration
+        label = entry.get("label")
+        if not label or not isinstance(label, str):
+            label = step.replace("_", " ").strip().title()
+        return step, duration, label
 
     def _clamp_duration(self, raw_duration: Any) -> int:
         try:
@@ -307,7 +311,9 @@ class VideoGenerator:
 
     # ── rendering ─────────────────────────────────────────────────────
 
-    def _render(self, step: str, source_path: str, duration: int, out_path: str, source_label: str) -> ClipResult:
+    def _render(
+        self, step: str, source_path: str, duration: int, out_path: str, source_label: str, label: str,
+    ) -> ClipResult:
         try:
             source_clip = VideoFileClip(source_path)
         except Exception as exc:
@@ -331,7 +337,7 @@ class VideoGenerator:
             source_clip.close()
 
         return ClipResult(
-            step=step, path=out_path, duration=duration,
+            step=step, path=out_path, duration=duration, label=label,
             source=source_label, is_fallback=(source_label not in ("library", "library_fuzzy")),
         )
 

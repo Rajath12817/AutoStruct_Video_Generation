@@ -58,6 +58,7 @@ def generate_video(
     transition: str = "cut",
     crossfade_duration: float = 0.3,
     strict: bool = False,
+    show_labels: bool = True,
 ) -> PipelineRunResult:
     if not isinstance(instruction, str) or not instruction.strip():
         raise PipelineError("Instruction must be a non-empty string.")
@@ -103,6 +104,13 @@ def generate_video(
 
     if not timeline:
         raise PipelineError("Stage 3 (Scheduling) returned an empty timeline.")
+
+    # Carry the parser's original sentence through as the on-screen caption
+    # (e.g. "Turn on the tap") rather than the snake_case step name -- order
+    # and count are preserved 1:1 from parsing through scheduling.
+    for entry, action in zip(timeline, parse_result.actions):
+        entry["label"] = action.raw.strip().rstrip(".")
+
     logger.info("[3] Scheduled timeline:")
     for entry in timeline:
         logger.info(
@@ -127,9 +135,15 @@ def generate_video(
             logger.warning("[4] %s", w)
 
     try:
+        # generation.clips is 1:1 with timeline (same order, same count --
+        # generate() never drops or reorders entries), so position-based
+        # zipping is safe even when the same step name repeats.
+        labels = [c.label for c in generation.clips] if show_labels else None
+
         assembler = VideoAssembler(output_path=output_path, target_resolution=target_resolution)
         assembly = assembler.assemble(
             generation.clip_paths, transition=transition, crossfade_duration=crossfade_duration,
+            labels=labels,
         )
     except AssemblerError as exc:
         raise PipelineError(f"Stage 5 (Assembly) failed: {exc}") from exc
@@ -169,6 +183,10 @@ def _parse_args(argv: List[str]) -> argparse.Namespace:
         "--strict", action="store_true",
         help="Fail immediately on any missing/broken clip instead of degrading to a placeholder.",
     )
+    p.add_argument(
+        "--no-labels", action="store_true",
+        help="Don't burn the current step's text onto the top of each clip.",
+    )
     p.add_argument("--log-level", default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"])
     return p.parse_args(argv)
 
@@ -187,6 +205,7 @@ def main(argv: List[str]) -> int:
             transition=args.transition,
             crossfade_duration=args.crossfade_duration,
             strict=args.strict,
+            show_labels=not args.no_labels,
         )
     except PipelineError as exc:
         print(f"PIPELINE FAILED: {exc}", file=sys.stderr)
