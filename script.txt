@@ -1,2 +1,3 @@
 python generate_video.py "Turn on the tap. Wet your hands. Apply soap. Scrub your hands for 20 seconds. Rinse your hands. Dry with a clean towel." --transition crossfade --crossfade-duration 0.4 --output output/final_video.mp4
 
+./venv/Scripts/python.exe -m streamlit run app.py

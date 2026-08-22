@@ -73,6 +73,7 @@ logger = logging.getLogger("video_generator")
 
 MIN_DURATION_S = 1
 MAX_DURATION_S = 30  # sanity cap against a runaway/hallucinated scheduler duration
+VALID_TRIM_ANCHORS = ("start", "center", "end")
 
 # The parser has no fixed action vocabulary -- it extracts verb+object
 # straight from the sentence, so "apply soap to your hands" becomes
@@ -206,6 +207,7 @@ class VideoGenerator:
         fallback_generator: Optional[Callable[[str, int], str]] = None,
         strict: bool = False,
         max_duration_s: int = MAX_DURATION_S,
+        trim_anchor: str = "start",
     ):
         if target_resolution[0] <= 0 or target_resolution[1] <= 0:
             raise ValueError(f"target_resolution must be positive, got {target_resolution}")
@@ -213,6 +215,8 @@ class VideoGenerator:
             raise ValueError(f"target_fps must be positive, got {target_fps}")
         if max_duration_s < MIN_DURATION_S:
             raise ValueError(f"max_duration_s must be >= {MIN_DURATION_S}, got {max_duration_s}")
+        if trim_anchor not in VALID_TRIM_ANCHORS:
+            raise ValueError(f"trim_anchor must be one of {VALID_TRIM_ANCHORS}, got {trim_anchor!r}")
 
         self.library = ClipLibrary(clips_dir)
         self.output_dir = output_dir
@@ -221,6 +225,7 @@ class VideoGenerator:
         self.fallback_generator = fallback_generator
         self.strict = strict
         self.max_duration_s = max_duration_s
+        self.trim_anchor = trim_anchor
         os.makedirs(self.output_dir, exist_ok=True)
 
     def generate(self, timeline: List[Dict[str, Any]]) -> GenerationResult:
@@ -247,7 +252,7 @@ class VideoGenerator:
     # ── per-step generation, with layered fallback ──────────────────────
 
     def _generate_one(self, i: int, entry: Any) -> ClipResult:
-        step, duration, label = self._validate_entry(i, entry)
+        step, duration, label, anchor = self._validate_entry(i, entry)
         safe_name = _safe_filename(step)
         out_path = os.path.join(self.output_dir, f"{i:03d}_{safe_name}.mp4")
 
@@ -255,7 +260,9 @@ class VideoGenerator:
         if source_path is not None:
             try:
                 source_label = "library" if match_type == "exact" else "library_fuzzy"
-                return self._render(step, source_path, duration, out_path, source_label=source_label, label=label)
+                return self._render(
+                    step, source_path, duration, out_path, source_label=source_label, label=label, anchor=anchor,
+                )
             except VideoGeneratorError as exc:
                 if self.strict:
                     raise
@@ -266,7 +273,9 @@ class VideoGenerator:
                 gen_path = self.fallback_generator(step, duration)
                 if not gen_path or not os.path.isfile(gen_path):
                     raise VideoGeneratorError(f"fallback_generator for '{step}' returned no usable file")
-                return self._render(step, gen_path, duration, out_path, source_label="fallback_generator", label=label)
+                return self._render(
+                    step, gen_path, duration, out_path, source_label="fallback_generator", label=label, anchor=anchor,
+                )
             except VideoGeneratorError as exc:
                 if self.strict:
                     raise
@@ -283,7 +292,7 @@ class VideoGenerator:
         source_label = "placeholder" if source_path is None and self.fallback_generator is None else "placeholder_after_error"
         return ClipResult(step=step, path=path, duration=duration, source=source_label, label=label, is_fallback=True)
 
-    def _validate_entry(self, i: int, entry: Any) -> Tuple[str, int, str]:
+    def _validate_entry(self, i: int, entry: Any) -> Tuple[str, int, str, str]:
         if not isinstance(entry, dict):
             raise TimelineValidationError(f"timeline[{i}] must be a dict, got {type(entry).__name__}")
         step = entry.get("step")
@@ -293,7 +302,11 @@ class VideoGenerator:
         label = entry.get("label")
         if not label or not isinstance(label, str):
             label = step.replace("_", " ").strip().title()
-        return step, duration, label
+        anchor = entry.get("trim_anchor", self.trim_anchor)
+        if anchor not in VALID_TRIM_ANCHORS:
+            logger.warning("Invalid trim_anchor %r for '%s' -- using %r.", anchor, step, self.trim_anchor)
+            anchor = self.trim_anchor
+        return step, duration, label, anchor
 
     def _clamp_duration(self, raw_duration: Any) -> int:
         try:
@@ -312,7 +325,7 @@ class VideoGenerator:
     # ── rendering ─────────────────────────────────────────────────────
 
     def _render(
-        self, step: str, source_path: str, duration: int, out_path: str, source_label: str, label: str,
+        self, step: str, source_path: str, duration: int, out_path: str, source_label: str, label: str, anchor: str,
     ) -> ClipResult:
         try:
             source_clip = VideoFileClip(source_path)
@@ -323,7 +336,7 @@ class VideoGenerator:
             if not source_clip.duration or source_clip.duration <= 0:
                 raise ClipReadError(f"clip '{source_path}' for step '{step}' has zero/invalid duration")
 
-            clip = self._fit_duration(source_clip, duration)
+            clip = self._fit_duration(source_clip, duration, anchor)
             clip = normalize_clip(clip, self.target_resolution, self.target_fps)
             try:
                 clip.write_videofile(
@@ -341,10 +354,21 @@ class VideoGenerator:
             source=source_label, is_fallback=(source_label not in ("library", "library_fuzzy")),
         )
 
-    def _fit_duration(self, clip, duration: int):
-        if clip.duration >= duration:
-            return clip.subclipped(0, duration)
-        return clip.with_effects([vfx.Loop(duration=duration)])
+    def _fit_duration(self, clip, duration: int, anchor: str = "start"):
+        """Trim the source clip down to `duration`, anchored at 'start' (default,
+        matches recorded footage where the motion begins immediately), 'end'
+        (for clips whose meaningful moment builds up over time -- common with
+        generative model output), or 'center'. Loops instead if the clip is
+        shorter than the assigned duration, regardless of anchor."""
+        if clip.duration < duration:
+            return clip.with_effects([vfx.Loop(duration=duration)])
+        if anchor == "end":
+            start = clip.duration - duration
+        elif anchor == "center":
+            start = max(0.0, (clip.duration - duration) / 2)
+        else:
+            start = 0.0
+        return clip.subclipped(start, start + duration)
 
     def _placeholder_clip(self, step: str, duration: int, index: int) -> str:
         logger.warning("No clip for '%s' -- generating placeholder (%ss).", step, duration)

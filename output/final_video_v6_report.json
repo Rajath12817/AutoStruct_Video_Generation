@@ -1,0 +1,67 @@
+{
+  "instruction": "Turn on the tap. Wet your hands. Apply soap. Scrub your hands for 20 seconds. Rinse your hands. Dry with a clean towel.",
+  "steps": [
+    "turn_tap_on",
+    "wet_your_hands",
+    "apply_soap_to_your_hands",
+    "scrub_your_hands_for_seconds",
+    "rinse_your_hands",
+    "dry_your_hands_with_clean_towel"
+  ],
+  "timeline": [
+    {
+      "step": "turn_tap_on",
+      "start": 0,
+      "end": 3,
+      "duration": 3,
+      "label": "turn on the tap"
+    },
+    {
+      "step": "wet_your_hands",
+      "start": 3,
+      "end": 6,
+      "duration": 3,
+      "label": "wet your hands"
+    },
+    {
+      "step": "apply_soap_to_your_hands",
+      "start": 6,
+      "end": 9,
+      "duration": 3,
+      "label": "apply soap to your hands"
+    },
+    {
+      "step": "scrub_your_hands_for_seconds",
+      "start": 9,
+      "end": 13,
+      "duration": 4,
+      "label": "scrub your hands for seconds"
+    },
+    {
+      "step": "rinse_your_hands",
+      "start": 13,
+      "end": 16,
+      "duration": 3,
+      "label": "rinse your hands"
+    },
+    {
+      "step": "dry_your_hands_with_clean_towel",
+      "start": 16,
+      "end": 19,
+      "duration": 3,
+      "label": "dry your hands with a clean towel"
+    }
+  ],
+  "output_path": "output/final_video_v6.mp4",
+  "duration": 17.0,
+  "parser_warnings": [],
+  "generation_warnings": [
+    "Step 'turn_tap_on' (position 0) matched a clip via fuzzy keyword matching, not an exact filename match -- verify it picked the right clip.",
+    "Step 'wet_your_hands' (position 1) matched a clip via fuzzy keyword matching, not an exact filename match -- verify it picked the right clip.",
+    "Step 'apply_soap_to_your_hands' (position 2) matched a clip via fuzzy keyword matching, not an exact filename match -- verify it picked the right clip.",
+    "Step 'scrub_your_hands_for_seconds' (position 3) matched a clip via fuzzy keyword matching, not an exact filename match -- verify it picked the right clip.",
+    "Step 'rinse_your_hands' (position 4) matched a clip via fuzzy keyword matching, not an exact filename match -- verify it picked the right clip.",
+    "Step 'dry_your_hands_with_clean_towel' (position 5) matched a clip via fuzzy keyword matching, not an exact filename match -- verify it picked the right clip."
+  ],
+  "assembly_warnings": []
+}

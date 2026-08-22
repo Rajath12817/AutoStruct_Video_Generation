@@ -1,0 +1,183 @@
+[
+  {
+    "label": "clean_well_formed",
+    "instruction": "Turn on the tap. Wet your hands. Apply soap. Scrub your hands for 20 seconds. Rinse your hands. Dry with a clean towel.",
+    "timing": {
+      "parse_s": 5.674082699988503,
+      "schedule_s": 1.201159300020663,
+      "generate_s": 12.854828999988968,
+      "assemble_s": 32.957214099995326,
+      "total_s": 57.51498379997793
+    },
+    "num_actions": 6,
+    "steps": [
+      "turn_on_tap",
+      "wet_your_hands",
+      "apply_soap_to_your_hands",
+      "scrub_your_hands_for_few_seconds",
+      "rinse_your_hands",
+      "dry_your_hands_with_clean_towel"
+    ],
+    "clip_sources": {
+      "library": 1,
+      "library_fuzzy": 5
+    },
+    "final_duration_s": 20.0,
+    "parser_warning_count": 0,
+    "generation_warning_count": 5,
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "label": "who_7step_informal",
+    "instruction": "wet hands with water then aply soaap rub palms together interlok fingers scrub backs of hands rubb thumbs rince with water and drie with towel",
+    "timing": {
+      "parse_s": 2.060567300010007,
+      "schedule_s": 1.356738900009077,
+      "generate_s": 10.197056100005284,
+      "assemble_s": 40.215778899990255,
+      "total_s": 57.98860889999196
+    },
+    "num_actions": 8,
+    "steps": [
+      "wet_hands_with_water",
+      "apply_soap",
+      "rub_palms",
+      "interlock_fingers",
+      "scrub_backs_of_hands",
+      "rub_thumbs",
+      "rinse_water",
+      "dry_towel"
+    ],
+    "clip_sources": {
+      "library_fuzzy": 2,
+      "library": 1,
+      "placeholder": 5
+    },
+    "final_duration_s": 25.0,
+    "parser_warning_count": 0,
+    "generation_warning_count": 7,
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "label": "mixed_tense_typos",
+    "instruction": "first trun on the tap then wets your hand aply some soaap then she scrubs and rinced off finally dry hand",
+    "timing": {
+      "parse_s": 4.162905100005446,
+      "schedule_s": 1.1205747000058182,
+      "generate_s": 5.845575800020015,
+      "assemble_s": 28.908917100023245,
+      "total_s": 43.61257939998177
+    },
+    "num_actions": 6,
+    "steps": [
+      "turn_tap_on",
+      "wet_your_hand",
+      "apply_some_soap",
+      "scrub",
+      "rinse",
+      "dry_your_hand"
+    ],
+    "clip_sources": {
+      "library_fuzzy": 2,
+      "placeholder": 4
+    },
+    "final_duration_s": 18.0,
+    "parser_warning_count": 0,
+    "generation_warning_count": 6,
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "label": "informal_slang",
+    "instruction": "yo open tap get hands wet put soap on hands rub rub rub get the soap off then dry it",
+    "timing": {
+      "parse_s": 2.8119664000114426,
+      "schedule_s": 1.544112600007793,
+      "generate_s": 5.841142300021602,
+      "assemble_s": 36.917963399988366,
+      "total_s": 51.21568660001503
+    },
+    "num_actions": 6,
+    "steps": [
+      "open_tap",
+      "get_your_hands_wet",
+      "put_soap_on_your_hands",
+      "rub_your_hands",
+      "rinse_soap",
+      "dry_your_hands"
+    ],
+    "clip_sources": {
+      "placeholder": 4,
+      "library_fuzzy": 2
+    },
+    "final_duration_s": 21.0,
+    "parser_warning_count": 0,
+    "generation_warning_count": 6,
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "label": "single_run_on",
+    "instruction": "turn on tap wet hands apply soap lather scrub rinse dry",
+    "timing": {
+      "parse_s": 2.0281012000050396,
+      "schedule_s": 1.2186771999986377,
+      "generate_s": 12.62366369998199,
+      "assemble_s": 39.469550100009656,
+      "total_s": 59.19337340001948
+    },
+    "num_actions": 7,
+    "steps": [
+      "turn_on_tap",
+      "wet_hands",
+      "apply_soap_to_hands",
+      "lather_hands",
+      "scrub_hands",
+      "rinse_hands",
+      "dry_hands"
+    ],
+    "clip_sources": {
+      "library": 5,
+      "library_fuzzy": 1,
+      "placeholder": 1
+    },
+    "final_duration_s": 24.0,
+    "parser_warning_count": 0,
+    "generation_warning_count": 2,
+    "status": "PASS",
+    "error": ""
+  },
+  {
+    "label": "numbered_list",
+    "instruction": "1 turn on tap 2 wet your hands 3 apply soap 4 rub hands 5 rinse off soap 6 turn off tap 7 dry hands with towel",
+    "timing": {
+      "parse_s": 2.410324099997524,
+      "schedule_s": 1.591671000001952,
+      "generate_s": 10.285158999991836,
+      "assemble_s": 38.94442409998737,
+      "total_s": 57.04202530000475
+    },
+    "num_actions": 7,
+    "steps": [
+      "turn_on_tap",
+      "wet_your_hands",
+      "apply_soap",
+      "rub_your_hands",
+      "rinse_soap",
+      "turn_tap",
+      "dry_your_hands_with_towel"
+    ],
+    "clip_sources": {
+      "library": 2,
+      "library_fuzzy": 2,
+      "placeholder": 3
+    },
+    "final_duration_s": 23.0,
+    "parser_warning_count": 0,
+    "generation_warning_count": 5,
+    "status": "PASS",
+    "error": ""
+  }
+]

@@ -59,6 +59,7 @@ def generate_video(
     crossfade_duration: float = 0.3,
     strict: bool = False,
     show_labels: bool = True,
+    trim_anchor: str = "start",
 ) -> PipelineRunResult:
     if not isinstance(instruction, str) or not instruction.strip():
         raise PipelineError("Instruction must be a non-empty string.")
@@ -121,7 +122,7 @@ def generate_video(
     try:
         generator = VideoGenerator(
             clips_dir=clips_dir, output_dir=processed_dir, strict=strict,
-            target_resolution=target_resolution,
+            target_resolution=target_resolution, trim_anchor=trim_anchor,
         )
         generation: GenerationResult = generator.generate(timeline)
     except VideoGeneratorError as exc:
@@ -187,6 +188,12 @@ def _parse_args(argv: List[str]) -> argparse.Namespace:
         "--no-labels", action="store_true",
         help="Don't burn the current step's text onto the top of each clip.",
     )
+    p.add_argument(
+        "--trim-anchor", choices=["start", "center", "end"], default="start",
+        help="Where in a longer-than-needed source clip to take the trimmed window from. "
+             "'start' suits recorded footage where the motion begins immediately; 'end' suits "
+             "clips (often generative-model output) whose meaningful moment builds up over time.",
+    )
     p.add_argument("--log-level", default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"])
     return p.parse_args(argv)
 
@@ -206,6 +213,7 @@ def main(argv: List[str]) -> int:
             crossfade_duration=args.crossfade_duration,
             strict=args.strict,
             show_labels=not args.no_labels,
+            trim_anchor=args.trim_anchor,
         )
     except PipelineError as exc:
         print(f"PIPELINE FAILED: {exc}", file=sys.stderr)

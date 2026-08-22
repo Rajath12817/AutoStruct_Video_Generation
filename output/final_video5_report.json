@@ -1,0 +1,66 @@
+{
+  "instruction": "Turn on the tap. Wet your hands. Apply soap. Scrub your hands. Rinse your hands. Dry with a clean towel for 5 seconds",
+  "steps": [
+    "turn_on_tap",
+    "wet_your_hands",
+    "apply_soap_to_your_hands",
+    "scrub_your_hands",
+    "rinse_your_hands",
+    "dry_your_hands_with_clean_towel_for_seconds"
+  ],
+  "timeline": [
+    {
+      "step": "turn_on_tap",
+      "start": 0,
+      "end": 3,
+      "duration": 3,
+      "label": "Turn on the tap"
+    },
+    {
+      "step": "wet_your_hands",
+      "start": 3,
+      "end": 6,
+      "duration": 3,
+      "label": "Wet your hands"
+    },
+    {
+      "step": "apply_soap_to_your_hands",
+      "start": 6,
+      "end": 9,
+      "duration": 3,
+      "label": "Apply soap to your hands"
+    },
+    {
+      "step": "scrub_your_hands",
+      "start": 9,
+      "end": 13,
+      "duration": 4,
+      "label": "Scrub your hands"
+    },
+    {
+      "step": "rinse_your_hands",
+      "start": 13,
+      "end": 16,
+      "duration": 3,
+      "label": "Rinse your hands"
+    },
+    {
+      "step": "dry_your_hands_with_clean_towel_for_seconds",
+      "start": 16,
+      "end": 23,
+      "duration": 7,
+      "label": "Dry your hands with a clean towel for seconds"
+    }
+  ],
+  "output_path": "output/final_video5.mp4",
+  "duration": 21.0,
+  "parser_warnings": [],
+  "generation_warnings": [
+    "Step 'wet_your_hands' (position 1) matched a clip via fuzzy keyword matching, not an exact filename match -- verify it picked the right clip.",
+    "Step 'apply_soap_to_your_hands' (position 2) matched a clip via fuzzy keyword matching, not an exact filename match -- verify it picked the right clip.",
+    "Step 'scrub_your_hands' (position 3) matched a clip via fuzzy keyword matching, not an exact filename match -- verify it picked the right clip.",
+    "Step 'rinse_your_hands' (position 4) matched a clip via fuzzy keyword matching, not an exact filename match -- verify it picked the right clip.",
+    "Step 'dry_your_hands_with_clean_towel_for_seconds' (position 5) matched a clip via fuzzy keyword matching, not an exact filename match -- verify it picked the right clip."
+  ],
+  "assembly_warnings": []
+}
